@@ -1,6 +1,7 @@
 from pages.main_page import MainPage
 from pages.search_result_page import SearchResultPage
 from selenium.webdriver import Keys
+import time
 import pytest
 import allure
 import logging
@@ -16,8 +17,8 @@ test_data_1 = [(search_request, valid_url, 0)]
 @allure.feature('search')
 @allure.feature('suggest list')
 @allure.feature('serp')
-@allure.description(f'Поиск по "{search_request}", проверка что выпадает таблица с подсказками поиска, '
-                    f'проверка что 1я ссылка ведет на {valid_url}')
+@allure.description(f'Поиск по "test_input", проверка что выпадает таблица с подсказками поиска, '
+                    f'проверка что "link_number" ссылка ведет на "expected"')
 @pytest.mark.headless_mode(False)
 @pytest.mark.parametrize("test_input, expected, link_number", test_data_1, ids=['test_set_1'])
 def test_search(firefox_browser, test_input, expected, link_number):
@@ -52,9 +53,12 @@ def test_search(firefox_browser, test_input, expected, link_number):
         assert url in expected, f'первая ссылка в результатах поиска не ведет на {expected}'
 
     # необязательный шаг
-    with allure.step(f'Проверка, что при клике на {link_number}й результат поиска переходим на {valid_url}'):
+    with allure.step(f'Проверка, что при клике на {link_number}й результат поиска переходим на {expected}'):
         new_url = main_page.goto_link(search_result_page.search_result_elements[link_number])
-        assert valid_url in new_url, f'не происходит переход на {valid_url}'
+        assert expected in new_url, f'не происходит переход на {expected}'
 
     logging.info('конец теста "поиск в Яндексе"')
+    
+    # исключительно для демонстрации
+    time.sleep(3)
     

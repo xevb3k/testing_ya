@@ -95,4 +95,6 @@ def test_images(firefox_browser, category_num, search_result_num, expected_link)
     
     logging.info('конец теста "поиск в Яндекс-Картинках"')
     
+    # исключительно для демонстрации
     time.sleep(3)
+    
