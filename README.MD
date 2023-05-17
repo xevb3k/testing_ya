@@ -7,13 +7,22 @@
 
 Возможен запуск в headless-режиме.
 
-Установка зависимостей: pip install -r requirements
+Установка зависимостей:
+```
+pip install -r requirements
+```
 
 Запуск локально:
+```
 python -m pytest -v [<test_file_name>[::<test_name>]]
+```
 
 Запуск с allure reports:
+```
 python -m pytest --alluredir=test_results [<test_file_name>[::<test_name>]]
+```
 
 Просмотр отчета:
+```
 allure serve test_results
+```

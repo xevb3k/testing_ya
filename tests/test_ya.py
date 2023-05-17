@@ -12,6 +12,7 @@ import logging
 search_request = 'тензор'
 valid_url = 'https://tensor.ru/'
 valid_url2 = 'https://yandex.ru/images/'
+test_data_1 = [(search_request, valid_url, 0)]
 
 
 @allure.title('Поиск в Яндекс')
@@ -21,7 +22,7 @@ valid_url2 = 'https://yandex.ru/images/'
 @allure.description(f'Поиск по "{search_request}", проверка что выпадает таблица с подсказками поиска, '
                     f'проверка что 1я ссылка ведет на {valid_url}')
 @pytest.mark.headless_mode(False)
-@pytest.mark.parametrize("test_input, expected, link_number", [(search_request, valid_url, 0)])
+@pytest.mark.parametrize("test_input, expected, link_number", test_data_1, ids=['test_set_1'])
 def test_search(firefox_browser, test_input, expected, link_number):
     logging.info('тест "поиск в Яндексе"')
 
