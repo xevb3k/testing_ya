@@ -7,7 +7,10 @@ import pytest
 import allure
 import logging
 
-valid_url2 = 'https://yandex.ru/images/'
+valid_url = 'https://yandex.ru/images/'
+
+# category_num, search_result_num, expected_link
+test_data_1 = [(0, 0, valid_url)]
 
 
 @allure.title('Поиск в Яндекс-Картинках')
@@ -19,8 +22,8 @@ valid_url2 = 'https://yandex.ru/images/'
 @allure.description('Переход со страницы ya.ru на ya.ru/images через suggest->main menu, поиск картинок из первой '
                     'популярной категории, просмотр первой картинки из результатов поиска, листание картинок')
 @pytest.mark.headless_mode(False)
-@pytest.mark.parametrize("category_num, search_result_num", [(0, 0)])
-def test_images(firefox_browser, category_num, search_result_num):
+@pytest.mark.parametrize("category_num, search_result_num, expected_link", test_data_1, ids=['test_set_1'])
+def test_images(firefox_browser, category_num, search_result_num, expected_link):
     logging.info('тест "поиск в Яндекс-Картинках"')
     browser = firefox_browser
     
@@ -39,9 +42,9 @@ def test_images(firefox_browser, category_num, search_result_num):
         main_page.suggest_menu_more_button.click()
         assert main_page.main_menu, 'не открылось главное меню'
     
-    with allure.step(f'Проверка что произошел переход на {valid_url2} при клике на кнопку "Картинки"'):
+    with allure.step(f'Проверка что произошел переход на {expected_link} при клике на кнопку "Картинки"'):
         url = main_page.main_menu_images_button_click()
-        assert url in valid_url2, f'не произошел переход на {valid_url2}'
+        assert url in expected_link, f'не произошел переход на {expected_link}'
     
     image_search_page = ImageSearchPage(browser)
     

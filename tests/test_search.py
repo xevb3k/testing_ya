@@ -7,6 +7,8 @@ import logging
 
 search_request = 'тензор'
 valid_url = 'https://tensor.ru/'
+
+# test_input, expected, link_number
 test_data_1 = [(search_request, valid_url, 0)]
 
 
