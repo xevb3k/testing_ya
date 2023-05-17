@@ -70,7 +70,7 @@ def test_search(firefox_browser, test_input, expected, link_number):
 @allure.description('Переход со страницы ya.ru на ya.ru/images через suggest->main menu, поиск картинок из первой '
                     'популярной категории, просмотр первой картинки из результатов поиска, листание картинок')
 @pytest.mark.headless_mode(False)
-@pytest.mark.parametrize("category_num, search_result_num", [(5, 6)])
+@pytest.mark.parametrize("category_num, search_result_num", [(0, 0)])
 def test_images(firefox_browser, category_num, search_result_num):
     logging.info('тест "поиск в Яндекс-Картинках"')
     browser = firefox_browser
@@ -117,7 +117,6 @@ def test_images(firefox_browser, category_num, search_result_num):
 
     with allure.step('Проверка что в слайдере открылось изображение'):
         assert images_swipe_modal_window.swipe_preview, 'не открылось изображение в слайдере'
-        
     with allure.step('Проверка что открылось именно выбранное изображение'):
         swipe_preview_url = images_swipe_modal_window.get_swipe_preview_url()
         assert first_search_result_url in swipe_preview_url, 'открылось неверное изображение'

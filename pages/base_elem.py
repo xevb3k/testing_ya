@@ -3,8 +3,6 @@ from selenium.webdriver.support.wait import WebDriverWait
 from selenium.common.exceptions import TimeoutException
 import logging
 
-DEFAULT_TIMEOUT = 10
-
 
 class BasePageElement:
     """
@@ -25,7 +23,7 @@ class BasePageElement:
     }
 
     locator = None
-    timeout = DEFAULT_TIMEOUT
+    timeout = 10
 
     def __init__(self, action):
         super().__init__()

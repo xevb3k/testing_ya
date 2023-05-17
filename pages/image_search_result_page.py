@@ -22,7 +22,6 @@ class ImageSearchResultPage(BasePage):
 
     def __init__(self, driver):
         super().__init__(driver)
-        self.wait_for_load_spinner()
 
     def select_search_result(self, result_number):
         logging.info(f'выбрать найденное изображение №{result_number}')
