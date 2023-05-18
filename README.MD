@@ -17,6 +17,11 @@ pip install -r requirements
 python -m pytest -v [<test_file_name>[::<test_name>]]
 ```
 
+Установка allure:
+```
+https://docs.qameta.io/allure/
+```
+
 Запуск с allure reports:
 ```
 python -m pytest --alluredir=test_results [<test_file_name>[::<test_name>]]
