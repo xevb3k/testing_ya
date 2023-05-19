@@ -62,7 +62,7 @@ class ImageSearchPage(BasePage):
     def select_popular_category(self, cat_number):
         button_close = self.popup_window_button_close
         button_install = self.popup_window_button_inst
-        # обход защиты Adblock
+        # обход защиты от Adblock
         if button_close and (button_close == button_install):
             logging.info('удалить всплывающее окно "установка браузера Яндекс"')
             self.delete_node(button_close)
